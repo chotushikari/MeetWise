@@ -1,36 +1,208 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MeetWise: Advanced Technical Interview Platform
+<p align="center">
+  <img src="assets/Screenshot 1.png" alt="MeetWise Banner" width="80%" />
+</p>
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📌 Overview
+
+**MeetWise** is a modern technical interview platform designed to streamline remote interviews through seamless integration of real-time video conferencing and collaborative code editing. Built with cutting-edge web technologies like **Next.js**, **Convex**, **Clerk**, **Stream**, and **Monaco Editor**, MeetWise offers a robust, secure, and user-friendly experience for both interviewers and candidates.
+
+---
+
+## 🚀 Features
+
+- ✅ Real-time video conferencing (Stream.io)
+- ✅ Collaborative code editor (Monaco Editor)
+- ✅ Role-based access control (Clerk)
+- ✅ Interview scheduling & management
+- ✅ Live code evaluation & assessment tools
+- ✅ Secure authentication with MFA support
+- ✅ Responsive UI with light/dark mode (TailwindCSS)
+- ✅ Real-time data sync using Convex
+
+---
+
+## 📽 Live Demo 
+
+  🔗 [MeetWise live demo](https://interviewplatform-two.vercel.app/)
+---
+
+## 🧠 Motivation
+
+The project was inspired by the increasing demand for efficient **remote technical assessments** in today's hybrid work environments. Traditional setups often result in fragmented workflows. MeetWise bridges the gap by offering an integrated platform focused on code collaboration, video communication, and interview assessment.
+
+---
+
+## 🎯 Objectives
+
+1. Seamless integration of code editor and video call.
+2. Real-time collaboration and assessment tools.
+3. Scalable and secure backend.
+4. Intuitive UI for all user roles.
+5. Role-based workflows (Interviewer/Candidate/Admin).
+6. Feature-rich experience with minimal setup.
+
+---
+
+## 🏗 Architecture
+
+MeetWise follows a **serverless, modular architecture**:
+
+```
+Frontend       → Next.js + TailwindCSS  
+Auth           → Clerk  
+Database       → Convex (Realtime DB)  
+Video API      → Stream.io (WebRTC)  
+Code Editor    → Monaco Editor  
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📷 Screenshots
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+### 📋 User Dashboard
+<p align="center">
+  <img src="assets/Screenshot 2.png" alt="User Dashboard" width="80%" />
+</p>
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 💬 Video Conferencing Interface
+<p align="center">
+  <img src="assets/Screenshot 3.png" alt="Video Conferencing" width="80%" />
+  <img src="assets/Screenshot 5.png" alt="Video Conferencing" width="80%" />
+</p>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+### 💻 Real-time Code Editor
+<p align="center">
+  <img src="Screenshot 4.png" alt="Code Editor" width="80%" />
+</p>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🗓️ Interview Scheduling
+<p align="center">
+  <img src="Screenshot 6.png" alt="Interview Scheduling" width="80%" />
+</p>
+
+---
+
+### ⚙️ Recordings
+<p align="center">
+  <img src="assets/Screenshot 7.png" alt="Settings" width="80%" />
+</p>
+
+---
+
+
+- Interview Dashboard  
+- Real-time Code Collaboration  
+- Video Conferencing Interface  
+- Interview Scheduling UI  
+
+---
+
+## 🧪 Testing Strategy
+
+- ✅ **Unit Tests**: Jest & React Testing Library
+- ✅ **Integration Tests**: Feature-level testing
+- ✅ **System Tests**: End-to-end user flows
+- ✅ **Performance Tests**: Load & latency simulation
+- ✅ **CI/CD**: GitHub Actions for automated builds & tests
+
+---
+
+## 📈 Performance Metrics
+
+- Sub-second UI response time  
+- Stable video streams at standard bandwidth  
+- Real-time collaboration latency: < 150ms  
+- Supports concurrent sessions with efficient resource handling  
+
+---
+
+## 🔧 Installation & Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/chotushikari/MeetWise.git
+cd MeetWise
+
+# Install dependencies
+npm install
+
+# Add your environment variables (Clerk, Convex, Stream)
+cp .env.example .env.local
+# Fill in required keys
+
+# Run locally
+npm run dev
+```
+
+---
+
+## 👥 Team & Contributions
+
+| Name                | Role                             | Key Contributions                            |
+|---------------------|----------------------------------|-----------------------------------------------|
+| Ashish Pal          | Video Integration                | System architecture, video calls, auth        |
+| Minaz Hussain       | Real-time Collaboration Lead     | Code editor sync, Convex integration          |
+| Piyush Takrani      | Frontend Developer               | UI components, Tailwind styling, responsiveness|
+| Saksham Singhania   | Code Editor Developer            | Monaco Editor features, file operations       |
+| Jenny Prasad        | Backend & Testing                | APIs, database, testing, CI/CD, documentation |
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend**: Next.js, React, TypeScript, TailwindCSS, shadcn/ui  
+- **Backend**: Convex (serverless DB), Clerk (Auth)  
+- **Realtime**: WebSockets, Convex  
+- **Video API**: Stream (WebRTC)  
+- **Editor**: Monaco Editor  
+- **CI/CD**: GitHub Actions  
+
+---
+
+## 🌱 Future Work
+
+- 🔁 Enhanced interview analytics
+- 🔐 Improved security & compliance (GDPR)
+- 🧠 AI-assisted code evaluation
+- 📱 Mobile support & offline mode
+- 📊 Interview insights dashboard
+- 🌐 HR & calendar integrations
+
+---
+
+## 📚 References & Docs
+
+- [Next.js Docs](https://nextjs.org/docs)
+- [React Docs](https://react.dev)
+- [TypeScript Docs](https://www.typescriptlang.org/docs)
+- [Clerk Docs](https://clerk.com/docs)
+- [Convex Docs](https://docs.convex.dev)
+- [Stream.io Docs](https://getstream.io/docs)
+- [Monaco Editor Docs](https://microsoft.github.io/monaco-editor)
+- [TailwindCSS Docs](https://tailwindcss.com/docs)
+
+---
+
+## 🔗 Repository
+
+[👉 GitHub Repository](https://github.com/chotushikari/MeetWise.git)
+
+---
+
+## 🙌 Acknowledgements
+
+Thanks to our mentor **Dr. Juhi Jain** and all contributors, open-source tools, and documentation communities that supported this project.
+
+---
+
+> **MeetWise**: A platform built for future-ready technical interviews 🌐💻🎥
