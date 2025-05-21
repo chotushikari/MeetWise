@@ -80,14 +80,14 @@ Code Editor    → Monaco Editor
 
 ### 💻 Real-time Code Editor
 <p align="center">
-  <img src="Screenshot 4.png" alt="Code Editor" width="80%" />
+  <img src="assets/Screenshot 4.png" alt="Code Editor" width="80%" />
 </p>
 
 ---
 
 ### 🗓️ Interview Scheduling
 <p align="center">
-  <img src="Screenshot 6.png" alt="Interview Scheduling" width="80%" />
+  <img src="assets/Screenshot 6.png" alt="Interview Scheduling" width="80%" />
 </p>
 
 ---
