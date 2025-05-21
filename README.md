@@ -22,6 +22,7 @@
 ---
 
 ## 📽 Live Demo 
+
   🔗 [MeetWise live demo](https://interviewplatform-two.vercel.app/)
 ---
 
@@ -58,7 +59,6 @@ Code Editor    → Monaco Editor
 
 ## 📷 Screenshots
 
-> _Add your UI screenshots here or link to a `/screenshots` folder_
 
 - Interview Dashboard  
 - Real-time Code Collaboration  
@@ -156,12 +156,6 @@ npm run dev
 ## 🔗 Repository
 
 [👉 GitHub Repository](https://github.com/chotushikari/MeetWise.git)
-
----
-
-## 📄 License
-
-> _Add license type here (e.g., MIT, Apache 2.0) if applicable_
 
 ---
 
