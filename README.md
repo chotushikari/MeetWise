@@ -1,6 +1,9 @@
 # MeetWise: Advanced Technical Interview Platform
+<p align="center">
+  <img src="assets/Screenshot 1.png" alt="MeetWise Banner" width="80%" />
+</p>
 
-![MeetWise Banner]() <!-- Optional: Add a banner image here -->
+
 
 ## 📌 Overview
 
@@ -58,6 +61,43 @@ Code Editor    → Monaco Editor
 ---
 
 ## 📷 Screenshots
+
+
+### 📋 User Dashboard
+<p align="center">
+  <img src="assets/Screenshot 2.png" alt="User Dashboard" width="80%" />
+</p>
+
+---
+
+### 💬 Video Conferencing Interface
+<p align="center">
+  <img src="assets/Screenshot 3.png" alt="Video Conferencing" width="80%" />
+  <img src="assets/Screenshot 5.png" alt="Video Conferencing" width="80%" />
+</p>
+
+---
+
+### 💻 Real-time Code Editor
+<p align="center">
+  <img src="Screenshot 4.png" alt="Code Editor" width="80%" />
+</p>
+
+---
+
+### 🗓️ Interview Scheduling
+<p align="center">
+  <img src="Screenshot 6.png" alt="Interview Scheduling" width="80%" />
+</p>
+
+---
+
+### ⚙️ Recordings
+<p align="center">
+  <img src="assets/Screenshot 7.png" alt="Settings" width="80%" />
+</p>
+
+---
 
 
 - Interview Dashboard  
