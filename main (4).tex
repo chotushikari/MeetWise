@@ -1,0 +1,1053 @@
+\documentclass[12pt,a4paper]{report}
+
+% Packages
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fontawesome5}
+\usepackage{enumitem}
+\usepackage{tocloft}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{bookmark}
+\usepackage{placeins} 
+
+% Title formatting
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[L]{MeetWise}
+\fancyhead[R]{\rightmark}
+\fancyfoot[C]{\thepage}
+
+% Define colors
+\definecolor{linkcolor}{RGB}{0, 83, 138}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Configure hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolor,
+    filecolor=linkcolor,      
+    urlcolor=linkcolor,
+    citecolor=linkcolor,
+}
+
+% Configure listings for code
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\begin{document}
+
+% Cover page
+\begin{titlepage}
+\begin{center}
+\vspace*{2cm}
+{\LARGE\bfseries MeetWise: Advanced Technical Interview Platform\\Project Report\par}
+\vspace{2cm}
+{\large\textbf{Course Code:} 2936810003\par}
+{\large\textbf{Course Name:} Project \par}
+\vspace{1.5cm}
+{\large\textbf{Submitted By:}\\[0.5em]
+\begin{tabular}{ll}
+Piyush Takrani      & 23293916010 \\
+Minaz Hussain       & 23293916011 \\
+Ashish Pal          & 23293916015 \\
+Saksham Singhania   & 23293916033 \\
+Jenny Prasad        & 23293916042 \\
+\end{tabular}
+\par}
+
+\vspace{0.5cm}
+{\large\textbf{Submitted To:} Dr. Juhi Jain\par}
+\vspace{1.5cm}
+{\large\textbf{Department:} Computer Engineering\par}
+{\large\textbf{Institution:} Faculty of Technology,University of Delhi\par}
+\vspace{1.5cm}
+{\large\textbf{Date:} April 30, 2025\par}
+\end{center}
+\end{titlepage}
+
+% Table of contents
+\tableofcontents
+\clearpage
+
+% Declaration
+\chapter*{Declaration}
+\addcontentsline{toc}{chapter}{Declaration}
+We hereby declare that the project report titled \textbf{"MeetWise-Advanced Technical Interview Platform"} is the outcome of our own work, carried out as part of our academic curriculum under the guidance of our faculty advisor.
+\\
+
+This project has not been submitted, either in part or in full, to any other institution or organization for any academic or professional purpose. All external sources of information, assistance, and reference materials used during the course of the project have been properly acknowledged.
+\\
+The development, testing, and documentation of this project were conducted with utmost sincerity, responsibility, and adherence to principles of academic integrity.
+
+\vspace{2cm}
+{\large\textbf{Submitted By:}\\[0.5em]
+\begin{tabular}{ll}
+Piyush Takrani      & 23293916010 \\
+Minaz Hussain       & 23293916011 \\
+Ashish Pal          & 23293916015 \\
+Saksham Singhania   & 23293916033 \\
+Jenny Prasad        & 23293916042 \\
+\end{tabular}
+\par}
+\clearpage
+
+% Acknowledgement
+\chapter*{Acknowledgement}
+\addcontentsline{toc}{chapter}{Acknowledgement}
+First and foremost, we extend our heartfelt gratitude to our instructor, \textbf{Dr.Juhi Jain}, for their continuous guidance, insightful feedback, and unwavering support throughout the development of this project. Their mentorship played a crucial role in helping us navigate technical challenges and stay aligned with our vision.
+
+
+We would also like to acknowledge the collaborative efforts of our team members, whose dedication, innovation, and teamwork brought this project to life. Each member's contribution was essential to its success.
+
+We are especially grateful for the technical tools and platforms that empowered our development process:
+\begin{itemize}
+    \item \textbf{Convex} – for enabling a real-time, serverless database experience
+    \item \textbf{Clerk} – for seamless and secure user authentication
+    \item \textbf{Stream} – for providing reliable video call functionality
+    \item \textbf{Monaco Editor} – for integrating a powerful and customizable code editor
+    \item \textbf{shadcn/ui} – for clean, accessible, and modern UI components
+    \item \textbf{Next.js} – for a performant, scalable React-based web framework
+\end{itemize}
+
+We also appreciate the vibrant open-source communities and documentation behind these technologies, which played a significant role in our learning and implementation journey.
+
+Lastly, we are thankful to our families and friends for their unwavering encouragement and moral support throughout this project.
+
+This experience has been immensely rewarding, and we hope the platform we built serves as a valuable resource for both users and developers.
+\clearpage
+
+% Abstract
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+MeetWise is a modern technical interview platform designed to facilitate seamless remote technical interviews. The platform combines real-time video conferencing with collaborative code editing capabilities, providing a comprehensive solution for technical assessments. Built using Next.js, TypeScript, and modern web technologies, MeetWise offers a robust and user-friendly environment for both interviewers and candidates.
+
+The platform's core features include:
+\begin{itemize}
+    \item Real-time video conferencing using Stream.io
+    \item Collaborative code editor with Monaco Editor
+    \item Role-based access control (Interviewer/Candidate)
+    \item Interview scheduling and management
+    \item Modern UI with dark/light mode support
+    \item Real-time data synchronization with Convex
+\end{itemize}
+
+This report details the development process, technical decisions, and implementation strategies that shaped MeetWise into a reliable and efficient platform for technical interviews. The platform's architecture leverages modern technologies including Next.js for the frontend, Convex for real-time data management, Stream.io for video communication, and Clerk for authentication, ensuring a secure and scalable solution for remote technical assessments.
+\clearpage
+
+% Motivation
+\chapter{Motivation}
+The motivation behind developing MeetWise stems from the increasing demand for efficient remote technical assessment tools in the modern recruitment landscape. With the global shift towards remote work, there's a growing need for platforms that can facilitate technical interviews without compromising on quality.
+
+Traditional technical interviews often involve cumbersome setups, including separate video conferencing tools and code sharing platforms, leading to disjointed experiences and technical challenges. Additionally, existing solutions often lack specialized features required for technical interviews, such as real-time code collaboration with syntax highlighting, language-specific assessment tools, and integrated recording systems.
+
+We identified these gaps in the market and recognized the opportunity to create a comprehensive solution that addresses these challenges. By integrating video conferencing with collaborative coding features, we aimed to create a seamless interview experience that accurately simulates real-world technical collaboration.
+
+Furthermore, the COVID-19 pandemic accelerated the adoption of remote hiring processes, making it essential to have robust remote assessment tools. This increased urgency motivated us to develop a solution that could meet the immediate needs of the industry while incorporating innovative features for enhanced user experience.
+
+% Objective
+\chapter{Objective}
+The primary objective of the MeetWise project is to develop a comprehensive technical interview platform that streamlines the remote assessment process for both recruiters and candidates. Specifically, the project aims to:
+
+\begin{enumerate}
+    \item Create a seamless integration of video conferencing and collaborative coding environment to facilitate efficient technical interviews.
+
+    \item Implement real-time collaboration features that allow interviewers and candidates to interact with code simultaneously, enabling accurate assessment of technical skills.
+
+    \item Develop robust security measures to protect sensitive interview data and ensure privacy compliance.
+
+    \item Design an intuitive, user-friendly interface that minimizes technical barriers and allows focus on the assessment process.
+
+    \item Build a scalable architecture that can accommodate growing user bases and evolving feature requirements.
+
+    \item Incorporate recording and playback capabilities for post-interview analysis and evaluation.
+
+    \item Integrate assessment tools that help evaluate code quality, performance, and correctness during the interview process.
+
+    \item Ensure high performance and reliability across different network conditions and devices.
+
+    \item Implement role-based access control to manage different user permissions and interview workflows.
+
+    \item Create a platform that can be extended with additional features like AI-assisted evaluations and multi-language support in the future.
+\end{enumerate}
+
+% Requirement Specification
+\chapter{Requirement Specification}
+
+\section{Functional Requirements}
+
+\subsection{User Management}
+\subsubsection{User Registration and Authentication}
+\begin{itemize}
+   \item Secure account creation with email verification
+   \item Multi-factor authentication options
+   \item Role-based access control (Admin, Interviewer, Candidate)
+   \item Social media login integration
+\end{itemize}
+
+
+
+\subsubsection{User Profiles}
+\begin{itemize}
+   \item Professional information management
+   \item Skills and experience tracking
+   \item Interview history and performance metrics
+   \item Preference settings for platform features
+\end{itemize}
+
+\subsection{Interview Management}
+\subsubsection{Interview Scheduling}
+\begin{itemize}
+   \item Calendar integration for availability management
+   \item Automated notifications and reminders
+   \item Time zone handling for global interviews
+   \item Rescheduling and cancellation workflows
+\end{itemize}
+
+\subsubsection{Interview Room Setup}
+\begin{itemize}
+   \item Custom room creation with configurable settings
+   \item Interview template management
+   \item Pre-interview setup checklist
+   \item Interviewer and candidate preparation workflows
+\end{itemize}
+
+\subsection{Video Conferencing}
+\subsubsection{Real-time Communication}
+\begin{itemize}
+   \item High-quality audio and video streaming
+   \item Screen sharing capabilities
+   \item Background blur/replacement options
+   \item Network quality monitoring and adaptation
+\end{itemize}
+
+\subsubsection{Meeting Controls}
+\begin{itemize}
+   \item Participant management (mute/unmute, remove)
+   \item Recording management
+   \item Camera and microphone settings
+   \item Hand raising and reaction features
+\end{itemize}
+
+\subsection{Code Collaboration}
+\subsubsection{Code Editor}
+\begin{itemize}
+   \item Multi-language support with syntax highlighting
+   \item Auto-completion and linting features
+   \item Multiple file management
+   \item Code execution capabilities
+\end{itemize}
+
+\subsubsection{Collaboration Features}
+\begin{itemize}
+   \item Real-time cursor tracking
+   \item Simultaneous editing capabilities
+   \item Version history and change tracking
+   \item Code comments and annotations
+\end{itemize}
+
+\subsection{Assessment Tools}
+\subsubsection{Code Evaluation}
+\begin{itemize}
+   \item Automated test case execution
+   \item Performance analysis
+   \item Code quality metrics
+   \item Plagiarism detection
+\end{itemize}
+
+\subsubsection{Feedback System}
+\begin{itemize}
+   \item Real-time feedback tools
+   \item Standardized evaluation forms
+   \item Rating system for skills assessment
+   \item Feedback history and progress tracking
+\end{itemize}
+
+\section{Non-Functional Requirements}
+
+\subsection{Performance}
+\subsubsection{Responsiveness}
+\begin{itemize}
+   \item Sub-second response time for UI interactions
+   \item Minimal latency for video and code collaboration
+   \item Support for concurrent interviews
+   \item Efficient resource utilization
+\end{itemize}
+
+\subsubsection{Scalability}
+\begin{itemize}
+   \item Horizontal scaling for increased user load
+   \item Vertical scaling for enhanced features
+   \item Database performance optimization
+   \item Content delivery optimization
+\end{itemize}
+
+\subsection{Security}
+\subsubsection{Data Protection}
+\begin{itemize}
+   \item End-to-end encryption for communication
+   \item Secure data storage with encryption at rest
+   \item Regular security audits and penetration testing
+   \item Compliance with data protection regulations
+\end{itemize}
+
+\subsubsection{Access Control}
+\begin{itemize}
+   \item Fine-grained permission management
+   \item Session handling and timeout controls
+   \item IP restriction options
+   \item Audit logging for security events
+\end{itemize}
+
+\subsection{Reliability}
+\subsubsection{Availability}
+\begin{itemize}
+   \item 99.9\% uptime target
+   \item Redundancy for critical components
+   \item Failover mechanisms
+   \item Disaster recovery planning
+\end{itemize}
+
+\subsubsection{Error Handling}
+\begin{itemize}
+   \item Graceful degradation for non-critical features
+   \item Comprehensive error logging
+   \item User-friendly error messages
+   \item Automated error reporting
+\end{itemize}
+
+\subsection{Usability}
+\subsubsection{User Interface}
+\begin{itemize}
+   \item Intuitive design with minimal learning curve
+   \item Responsive design for all device types
+   \item Accessibility compliance (WCAG standards)
+   \item Dark/light mode support
+\end{itemize}
+
+\subsubsection{User Experience}
+\begin{itemize}
+   \item Streamlined workflows for common tasks
+   \item Customizable interface elements
+   \item Comprehensive help and documentation
+   \item Onboarding assistance for new users
+\end{itemize}
+
+% Software Design
+\chapter{Software Design}
+
+\section{System Architecture}
+
+\subsection{High-Level Architecture}
+MeetWise follows a modern web application architecture with a clear separation of concerns between frontend and backend components. The system employs a serverless architecture with the following key components:
+
+\begin{enumerate}
+    \item Frontend Application (Next.js)
+    \item Authentication Service (Clerk)
+    \item Real-time Database (Convex)
+    \item Video Communication (Stream.io)
+    \item Code Editor (Monaco Editor)
+\end{enumerate}
+
+\subsection{Real-time Collaboration Architecture}
+\subsubsection{Code Synchronization}
+\begin{itemize}
+   \item Real-time code editing using WebSocket connections
+   \item Operational Transformation for conflict resolution
+   \item Cursor position tracking and synchronization
+   \item Change propagation with minimal latency
+\end{itemize}
+
+\subsubsection{Video Communication}
+\begin{itemize}
+   \item WebRTC-based video streaming
+   \item Adaptive bitrate for optimal quality
+   \item Screen sharing with low latency
+   \item Audio/video synchronization
+\end{itemize}
+
+\subsubsection{Data Flow}
+\begin{itemize}
+   \item Real-time state updates through Convex
+   \item Optimized WebSocket connections
+   \item Efficient data synchronization
+   \item Conflict resolution mechanisms
+\end{itemize}
+
+\subsection{Frontend Architecture}
+\subsubsection{Component Structure}
+\begin{itemize}
+   \item App Layout: Global wrapper with authentication and theme providers
+   \item Protected Routes: Role-based access control for different user types
+   \item Interview Components: Video conferencing and code collaboration features
+   \item UI Components: Reusable components built with shadcn/ui
+\end{itemize}
+
+\subsubsection{State Management}
+\begin{itemize}
+   \item Convex for real-time data synchronization
+   \item React Context for global state
+   \item Local component state for UI-specific data
+   \item Optimized re-rendering with React hooks
+\end{itemize}
+
+\section{Key Components}
+
+\subsection{Code Editor}
+\begin{itemize}
+   \item Monaco Editor integration with real-time capabilities
+   \item Multi-language support with syntax highlighting
+   \item Real-time cursor tracking and selection sharing
+   \item Collaborative editing with conflict resolution
+\end{itemize}
+
+\subsection{Video Conferencing}
+\begin{itemize}
+   \item Stream.io integration for WebRTC
+   \item Screen sharing capabilities
+   \item Audio/video controls
+   \item Network quality monitoring
+\end{itemize}
+
+\subsection{User Interface}
+\begin{itemize}
+   \item Modern design with Tailwind CSS
+   \item Dark/light mode support
+   \item Responsive layouts
+   \item Accessible components
+\end{itemize}
+
+\section{Data Flow}
+
+\subsection{Authentication Flow}
+\begin{itemize}
+   \item User authentication with Clerk
+   \item Role-based access control
+   \item Session management
+   \item Secure token handling
+\end{itemize}
+
+\subsection{Interview Flow}
+\begin{itemize}
+   \item Interview creation and scheduling
+   \item Room management
+   \item Participant coordination
+   \item Recording management
+\end{itemize}
+
+\subsection{Code Collaboration Flow}
+\begin{itemize}
+   \item Real-time code synchronization using WebSocket
+   \item Cursor position tracking and sharing
+   \item Change propagation with conflict resolution
+   \item State synchronization across participants
+\end{itemize}
+
+% Software Coding and Testing
+\chapter{Software Coding \& Testing}
+
+\section{Development Approach}
+The MeetWise platform was developed using an agile methodology with xp practices. We followed a feature-driven development approach, implementing core functionality first and then progressively adding enhanced features based on priority.
+
+\subsection{Coding Standards}
+\subsubsection{Code Organization}
+\begin{itemize}
+   \item Modular architecture with well-defined components
+   \item Consistent file and folder structure
+   \item Separation of concerns (UI, business logic, data access)
+   \item Component reusability focus
+\end{itemize}
+
+\subsubsection{Naming Conventions}
+\begin{itemize}
+   \item Descriptive variable and function names
+   \item Consistent casing (camelCase for variables, PascalCase for components)
+   \item Clear and meaningful class and module names
+   \item Self-documenting code principle
+\end{itemize}
+
+\subsubsection{Documentation}
+\begin{itemize}
+   \item Comprehensive inline comments for complex logic
+   \item JSDoc for function descriptions
+   \item README files for major components
+   \item Architecture documentation with diagrams
+\end{itemize}
+
+\section{Implementation Details}
+
+\subsection{Video Conferencing}
+\subsubsection{Stream.io Integration}
+\begin{itemize}
+   \item WebRTC-based video communication
+   \item Bandwidth optimization techniques
+   \item Device handling for camera and microphone access
+   \item Room management for participant controls
+\end{itemize}
+
+\subsubsection{Meeting Setup}
+\begin{itemize}
+   \item Device testing and configuration
+   \item Audio/video quality adjustment
+   \item Network quality monitoring
+   \item Participant management interface
+\end{itemize}
+
+\subsubsection{Recording System}
+\begin{itemize}
+   \item High-quality recording with optimized storage
+   \item Access control for recorded content
+   \item Playback interface with navigation controls
+   \item Recording metadata management
+\end{itemize}
+
+\subsection{Code Collaboration}
+\subsubsection{Editor Implementation}
+\begin{itemize}
+   \item Monaco Editor integration for rich editing experience
+   \item Multi-language support with syntax highlighting
+   \item Auto-completion and linting features
+   \item Code execution capabilities
+\end{itemize}
+
+\subsubsection{Real-time Features}
+\begin{itemize}
+   \item Cursor position synchronization
+   \item Text editing with conflict resolution
+   \item File management system
+   \item Version control with history tracking
+\end{itemize}
+
+\subsubsection{Assessment Tools}
+\begin{itemize}
+   \item Code evaluation with automated test cases
+   \item Performance metrics tracking
+   \item Error detection and highlighting
+   \item Style checking based on language conventions
+\end{itemize}
+\section{Testing Strategy}
+
+Our testing strategy follows a layered approach incorporating black-box, grey-box, unit, and integration testing methods to ensure functional correctness, performance, and user experience across the platform.
+
+\subsection{Unit Testing (White-box)}
+Unit tests are written for individual components and utility functions using Jest and React Testing Library. This includes:
+\begin{itemize}
+    \item Verifying component rendering and state transitions
+    \item Testing utility functions for input validation, edge cases, and error handling
+    \item Mocking services to isolate logic from external dependencies
+\end{itemize}
+
+\subsection{Integration Testing (Grey-box)}
+Integration testing ensures that modules and services interact as expected. These are tested with partial system knowledge, validating:
+\begin{itemize}
+    \item API endpoints and authentication flows
+    \item Feature-level interactions like video calls and collaborative coding
+    \item Real-time data synchronization between clients
+\end{itemize}
+
+\subsection{System Testing (Black-box)}
+System testing is conducted from a user perspective without internal code visibility. It includes:
+\begin{itemize}
+    \item End-to-end testing of the interview process and user journeys
+    \item Compatibility across browsers, devices, and network conditions
+    \item Long-session behavior and stability
+\end{itemize}
+
+\subsection{Performance and Load Testing}
+We simulate various usage conditions to assess system scalability and robustness:
+\begin{itemize}
+    \item Load testing for increasing user volumes
+    \item Stress testing under resource limitations
+    \item Latency simulation and resource usage monitoring
+\end{itemize}
+
+\subsection{Quality Assurance}
+\subsubsection*{Automated Testing}
+Automated workflows using GitHub Actions support:
+\begin{itemize}
+    \item Continuous integration and regression testing
+    \item Code coverage tracking
+    \item Performance baseline monitoring
+\end{itemize}
+
+\subsubsection*{Manual Testing}
+Manual QA focuses on:
+\begin{itemize}
+    \item Usability and exploratory testing
+    \item Accessibility and compliance checks
+    \item Cross-platform and device compatibility validation
+\end{itemize}
+
+% Results/Screenshots
+\chapter{Results}
+
+\section{Implemented Features}
+
+\subsection{User Interface}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{landing page.png}
+    \caption{MeetWise Landing Page}
+    \label{fig:landing}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{land.png}
+    \caption{User Dashboard}
+    \label{fig:dashboard}
+\end{figure}
+
+\subsection{Real-time Collaboration System}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{code editor.png}
+    \caption{Real-time Code Collaboration Interface}
+    \label{fig:collab}
+\end{figure}
+
+\begin{itemize}
+   \item Real-time code synchronization using Convex
+   \item Cursor position tracking
+   \item Basic conflict resolution
+   \item Simple change propagation
+\end{itemize}
+
+\subsection{Video Conferencing}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{code editor.png}
+    \caption{Video Conferencing Interface}
+    \label{fig:video}
+\end{figure}
+
+\begin{itemize}
+   \item Video calls using Stream.io
+   \item Basic screen sharing
+   \item Audio/video controls
+   \item Simple participant management
+\end{itemize}
+
+\subsection{Code Editor}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{code editor.png}
+    \caption{Code Editor with Real-time Collaboration}
+    \label{fig:editor}
+\end{figure}
+
+\begin{itemize}
+   \item Monaco Editor integration
+   \item Basic syntax highlighting
+   \item Simple auto-completion
+   \item Basic code execution
+\end{itemize}
+
+\subsection{Interview Management}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{schdule meeting.png}
+    \caption{Interview Scheduling Interface}
+    \label{fig:schedule}
+\end{figure}
+
+\begin{itemize}
+   \item Basic interview scheduling
+   \item Role-based access control
+   \item Simple status tracking
+   \item Basic notifications
+\end{itemize}
+
+\section{Technical Implementation}
+
+\subsection{Real-time Features}
+\begin{itemize}
+   \item Convex for real-time data
+   \item Basic state synchronization
+   \item Simple data transfer
+   \item Basic conflict handling
+\end{itemize}
+
+\subsection{Authentication System}
+\begin{itemize}
+   \item Clerk authentication
+   \item Basic role management
+   \item Simple session handling
+   \item Basic security protocols
+\end{itemize}
+
+\subsection{Database Integration}
+\begin{itemize}
+   \item Convex for data storage
+   \item Basic queries
+   \item Simple data sync
+   \item Basic data security
+\end{itemize}
+
+\section{Performance Metrics}
+\begin{itemize}
+   \item Basic latency for code changes
+   \item Standard video quality
+   \item Simple resource usage
+   \item Basic scalability
+\end{itemize}
+
+\section{GitHub Repository}
+Project Code: \faGithub \ \href{https://github.com/chotushikari/MeetWise.git}{MeetWise}
+
+% Discussion
+\chapter{Discussion}
+
+\section{Technical Challenges and Solutions}
+
+\subsection{Real-time Code Collaboration}
+One of the main challenges was implementing basic real-time code collaboration with minimal latency.
+
+\subsubsection{Challenge: Code Synchronization}
+\begin{itemize}
+   \item Basic consistency across clients
+   \item Simple edit handling
+   \item Basic cursor tracking
+   \item Standard latency
+\end{itemize}
+
+\subsubsection{Solution: Convex Integration}
+\begin{itemize}
+   \item Used Convex for real-time updates
+   \item Basic state management
+   \item Simple data sync
+   \item Standard data transfer
+\end{itemize}
+
+\subsection{Video Communication}
+Ensuring basic video communication was another key challenge.
+
+\subsubsection{Challenge: Network Handling}
+\begin{itemize}
+   \item Basic network conditions
+   \item Standard bandwidth usage
+   \item Simple connection handling
+   \item Basic quality maintenance
+\end{itemize}
+
+\subsubsection{Solution: Stream.io Integration}
+\begin{itemize}
+   \item Used Stream.io for video calls
+   \item Basic quality settings
+   \item Simple network handling
+   \item Standard fallback options
+\end{itemize}
+
+\section{Design Decisions}
+
+\subsection{Technology Stack}
+The selection of technologies was important for the project:
+
+\begin{itemize}
+   \item Next.js for frontend
+   \item Convex for database
+   \item Stream.io for video
+   \item Monaco Editor for code
+\end{itemize}
+
+\subsection{Architecture Choices}
+Key architectural decisions:
+
+\begin{itemize}
+   \item Basic serverless setup
+   \item Simple real-time approach
+   \item Standard component design
+   \item Basic data flow
+\end{itemize}
+
+\section{Performance Considerations}
+
+\subsection{Optimization Strategies}
+\begin{itemize}
+   \item Basic state management
+   \item Simple data transfer
+   \item Standard resource usage
+   \item Basic caching
+\end{itemize}
+
+\subsection{Scalability}
+\begin{itemize}
+   \item Basic scaling capability
+   \item Simple load handling
+   \item Standard resource management
+   \item Basic monitoring
+\end{itemize}
+
+% Conclusion and Future Work
+\chapter{Conclusion and Future Work}
+
+\section{Conclusion}
+MeetWise has successfully created a basic platform for conducting technical interviews. The platform's key achievements include:
+
+\begin{enumerate}
+    \item Basic integration of video and code collaboration
+    \item Simple synchronization of code and video
+    \item Basic authentication and role control
+    \item Standard user interface
+    \item Simple interview management
+\end{enumerate}
+
+The project demonstrates the successful implementation of modern web technologies to create a basic platform for technical interviews.
+
+\section{Future Work}
+While MeetWise provides a foundation for technical interviews, several areas for future enhancement have been identified:
+
+\subsection{Enhanced Code Collaboration}
+\begin{itemize}
+   \item More language support
+   \item Better code analysis
+   \item Improved debugging
+   \item Code snippet library
+\end{itemize}
+
+\subsection{Interview Features}
+\begin{itemize}
+   \item Better scheduling
+   \item Interview templates
+   \item Improved recording
+   \item Basic analytics
+\end{itemize}
+
+\subsection{Platform Improvements}
+\begin{itemize}
+   \item Mobile support
+   \item Offline mode
+   \item Better security
+   \item Performance improvements
+\end{itemize}
+
+\subsection{Integration Capabilities}
+\begin{itemize}
+   \item HR system links
+   \item Calendar integration
+   \item Learning system connection
+   \item Basic API support
+\end{itemize}
+
+% Contribution
+\chapter{Contribution}
+
+\section{Team Member Contributions}
+
+\subsection{Team Member 1: Ashish Pal - Project Lead and Video Integration}
+\begin{itemize}
+    \item \textbf{Architecture Design}
+    \begin{itemize}
+        \item Designed the overall system architecture
+        \item Created the component hierarchy
+        \item Planned the data flow architecture
+        \item Designed the API structure
+    \end{itemize}
+    
+    \item \textbf{Video Conferencing Implementation}
+    \begin{itemize}
+        \item Integrated Stream SDK for video calls
+        \item Implemented WebRTC connections
+        \item Developed video quality controls
+        \item Created screen sharing functionality
+    \end{itemize}
+    
+    \item \textbf{Authentication System}
+    \begin{itemize}
+        \item Integrated Clerk authentication
+        \item Implemented role-based access control
+        \item Created user session management
+        \item Developed security protocols
+    \end{itemize}
+    
+    \item \textbf{Project Management}
+    \begin{itemize}
+        \item Coordinated team meetings
+        \item Managed project timeline
+        \item Oversaw code reviews
+        \item Handled deployment planning
+    \end{itemize}
+\end{itemize}
+
+\subsection{Team Member 2: Minaz Hussain - Real-time Collaboration System}
+\begin{itemize}
+    \item \textbf{Code Collaboration}
+    \begin{itemize}
+        \item Implemented real-time code editing
+        \item Developed cursor position tracking
+        \item Created collaborative editing features
+        \item Implemented conflict resolution
+    \end{itemize}
+    
+    \item \textbf{Data Synchronization}
+    \begin{itemize}
+        \item Integrated Convex for real-time updates
+        \item Implemented WebSocket connections
+        \item Created data consistency mechanisms
+        \item Developed offline support
+    \end{itemize}
+    
+    \item \textbf{File Management}
+    \begin{itemize}
+        \item Created file system structure
+        \item Implemented file sharing
+        \item Developed version control integration
+        \item Created file permission system
+    \end{itemize}
+\end{itemize}
+
+\subsection{Team Member 3: Piyush Takrani - Frontend Development}
+\begin{itemize}
+    \item \textbf{UI Components}
+    \begin{itemize}
+        \item Developed reusable React components
+        \item Created custom hooks
+        \item Implemented state management
+        \item Built form components
+    \end{itemize}
+    
+    \item \textbf{Styling and Design}
+    \begin{itemize}
+        \item Implemented Tailwind CSS
+        \item Created responsive layouts
+        \item Developed dark/light themes
+        \item Built animation components
+    \end{itemize}
+    
+    \item \textbf{Performance Optimization}
+    \begin{itemize}
+        \item Implemented code splitting
+        \item Optimized bundle size
+        \item Created lazy loading
+        \item Developed caching strategies
+    \end{itemize}
+\end{itemize}
+
+\subsection{Team Member 4: Saksham Singhania - Code Editor Development}
+\begin{itemize}
+    \item \textbf{Editor Features}
+    \begin{itemize}
+        \item Integrated Monaco Editor
+        \item Implemented syntax highlighting
+        \item Created code completion
+        \item Developed error checking
+    \end{itemize}
+    
+    \item \textbf{Collaborative Features}
+    \begin{itemize}
+        \item Implemented multi-cursor support
+        \item Created shared editing sessions
+        \item Developed chat integration
+        \item Built presence indicators
+    \end{itemize}
+    
+    \item \textbf{File Operations}
+    \begin{itemize}
+        \item Created file tree navigation
+        \item Implemented file search
+        \item Developed file operations
+        \item Built file preview system
+    \end{itemize}
+\end{itemize}
+
+\subsection{Team Member 5: Jenny Prasad - Backend and Testing}
+\begin{itemize}
+    \item \textbf{Backend Development}
+    \begin{itemize}
+        \item Created database schemas
+        \item Implemented API endpoints
+        \item Developed data validation
+        \item Built error handling
+    \end{itemize}
+    
+    \item \textbf{Testing and Quality Assurance}
+    \begin{itemize}
+        \item Created unit tests
+        \item Implemented integration tests
+        \item Developed test automation
+        \item Conducted performance testing
+    \end{itemize}
+    
+    \item \textbf{Documentation}
+    \begin{itemize}
+        \item Created API documentation
+        \item Wrote user guides
+        \item Developed setup instructions
+        \item Created deployment guides
+    \end{itemize}
+    
+    \item \textbf{Deployment and CI/CD}
+    \begin{itemize}
+        \item Set up deployment pipeline
+        \item Implemented CI/CD workflows
+        \item Created monitoring systems
+        \item Developed backup strategies
+    \end{itemize}
+\end{itemize}
+
+% References
+\chapter{References}
+\section{References}
+\begin{thebibliography}{99}
+
+\bibitem{nextjs} Next.js Documentation (2024). \textit{Next.js Documentation}. [Online]. Available: \url{https://nextjs.org/docs}
+
+\bibitem{react} React Documentation (2024). \textit{React Documentation}. [Online]. Available: \url{https://react.dev}
+
+\bibitem{typescript} TypeScript Documentation (2024). \textit{TypeScript Documentation}. [Online]. Available: \url{https://www.typescriptlang.org/docs}
+
+\bibitem{tailwind} Tailwind CSS Documentation (2024). \textit{Tailwind CSS Documentation}. [Online]. Available: \url{https://tailwindcss.com/docs}
+
+\bibitem{clerk} Clerk Documentation (2024). \textit{Clerk Authentication Documentation}. [Online]. Available: \url{https://clerk.com/docs}
+
+\bibitem{convex} Convex Documentation (2024). \textit{Convex Backend Documentation}. [Online]. Available: \url{https://docs.convex.dev}
+
+\bibitem{stream} Stream Documentation (2024). \textit{Stream Video API Documentation}. [Online]. Available: \url{https://getstream.io/docs}
+
+
+
+\bibitem{monaco} Monaco Editor Documentation (2024). \textit{Monaco Editor - The Code Editor that Powers VS Code}. [Online]. Available: \url{https://microsoft.github.io/monaco-editor}
+
+\bibitem{webrtc} WebRTC Documentation (2024). \textit{WebRTC - Real-time Communication}. [Online]. Available: \url{https://webrtc.org}
+
+\bibitem{websocket} WebSocket Protocol (2024). \textit{WebSocket Protocol Specification}. [Online]. Available: \url{https://datatracker.ietf.org/doc/html/rfc6455}
+
+
+
+
+\end{thebibliography}
+
+\end{document}
